@@ -1,1 +1,14 @@
 [36m[2025-05-20 15:08:26] [INFO] Initiated logger successfully![39m
+[36m[2025-05-20 15:19:36] [INFO] Welcome![39m
+[2025-05-20 15:19:52] [INFO] Welcome!
+[36m[2025-05-20 15:24:12] [INFO] Start loading dataset ...[39m
+[36m[2025-05-20 15:24:45] [INFO] Start loading dataset ...[39m
+[36m[2025-05-20 15:26:02] [INFO] Start loading dataset ...[39m
+[36m[2025-05-20 15:26:12] [INFO] Start loading dataset ...[39m
+[31m[2025-05-20 15:26:12] [ERROR] JSON decoding error: Expecting value: line 1 column 2 (char 1)[39m
+[36m[2025-05-20 15:27:38] [INFO] Start loading dataset ...[39m
+[32m[2025-05-20 15:27:38] [SUCCESS] Loading dataset has been completed successfully![39m
+[36m[2025-05-20 15:34:49] [INFO] Start loading dataset ...[39m
+[32m[2025-05-20 15:34:49] [SUCCESS] Loading dataset has been completed successfully![39m
+[36m[2025-05-20 15:35:58] [INFO] Start loading dataset ...[39m
+[32m[2025-05-20 15:35:58] [SUCCESS] Loading dataset has been completed successfully![39m

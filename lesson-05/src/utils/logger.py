@@ -78,13 +78,21 @@ class SimpleLogger:
         self._is_initialized = True # Mark as initialized
 
     def _format_message(self, level: str, msg: str, color: str = "") -> str:
-        """Internal method to format log messages with timestamp, level, and color."""
+        """Internal method to format log messages with timestamp, level, and optional color."""
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        return f"{color}[{timestamp}] [{level}] {msg}{Fore.RESET}"
+        if color:
+            return f"{color}[{timestamp}] [{level}] {msg}{Fore.RESET}"
+        else:
+            # No color applied
+            return f"[{timestamp}] [{level}] {msg}"
 
     def info(self, msg: str):
-        """Logs an informational message."""
+        """Logs an informational message (colored)."""
         self.logger.info(self._format_message("INFO", msg, Fore.CYAN))
+
+    def subinfo(self, msg: str):
+        """Logs an informational message without color (plain text)."""
+        self.logger.info(self._format_message("INFO", msg, color=""))
 
     def success(self, msg: str):
         """Logs a success message."""
@@ -177,8 +185,6 @@ class SimpleLogger:
 
 # --- Global Logger Instance (Factory Function) ---
 
-# This function provides a central point to get the logger instance.
-# It uses the Singleton pattern of SimpleLogger to ensure consistency.
 def get_logger(log_file: str = None) -> SimpleLogger:
     """
     Returns a singleton instance of the SimpleLogger.
