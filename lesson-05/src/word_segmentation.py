@@ -1,7 +1,9 @@
+from typing import Optional
 from utils.logger import get_logger
 import py_vncorenlp
 import pandas as pd
 import json
+
 
 
 # Setup logger 
@@ -9,17 +11,25 @@ logger = get_logger('./lesson-05/log/compile.log')
 
 # Loading models
 
-def load_model(vncorenlpPath: str, outputPath: str) -> py_vncorenlp:
+def load_model(model_path: str) -> Optional[py_vncorenlp.VnCoreNLP]:
     '''
-    This function is to load `py_vncorenlp` model and save it into a specific folder, determined by outputPath.
-    Arg:
-        - `vncorenlpPath` : Specifying vncorenlp library
-        - `outputPath`    : Folder path specifying position to save model
+    Downloads and loads the VnCoreNLP model.
+
+    Args:
+        model_path (str): Absolute path where the model should be downloaded and loaded from.
+    
+    Returns:
+        An instance of py_vncorenlp.VnCoreNLP or None if failed.
     '''
-    py_vncorenlp.download_model(save_dir=vncorenlpPath) # outputPath = '/absolute/path/to/vncorenlp'
-    # Load VnCoreNLP from the local working folder that contains both `VnCoreNLP-1.2.jar` and `models` 
-    model = py_vncorenlp.VnCoreNLP(save_dir=outputPath) # Equivalent to: model = py_vncorenlp.VnCoreNLP(annotators=["wseg", "pos", "ner", "parse"], save_dir='/absolute/path/to/vncorenlp')
-    return model
+    try:
+        logger.info('Downloading and loading VnCoreNLP model...')
+        py_vncorenlp.download_model(save_dir=model_path)
+        model = py_vncorenlp.VnCoreNLP(save_dir=model_path, annotators=["wseg", "pos", "ner", "parse"])
+        logger.info('VnCoreNLP model loaded successfully.')
+        return model
+    except Exception as e:
+        logger.error(f'Error loading VnCoreNLP model: {e}')
+        return None
 
 model = load_model(vncorenlpPath='', outputPath='./lesson-05/model')
 
