@@ -1,11 +1,62 @@
 from utils.logger import get_logger
-import vncorenlp
+import py_vncorenlp
 import pandas as pd
 import json
 
 
 # Setup logger 
 logger = get_logger('./lesson-05/log/compile.log')
+
+# Loading models
+
+def load_model(vncorenlpPath: str, outputPath: str) -> py_vncorenlp:
+    '''
+    This function is to load `py_vncorenlp` model and save it into a specific folder, determined by outputPath.
+    Arg:
+        - `vncorenlpPath` : Specifying vncorenlp library
+        - `outputPath`    : Folder path specifying position to save model
+    '''
+    py_vncorenlp.download_model(save_dir=vncorenlpPath) # outputPath = '/absolute/path/to/vncorenlp'
+    # Load VnCoreNLP from the local working folder that contains both `VnCoreNLP-1.2.jar` and `models` 
+    model = py_vncorenlp.VnCoreNLP(save_dir=outputPath) # Equivalent to: model = py_vncorenlp.VnCoreNLP(annotators=["wseg", "pos", "ner", "parse"], save_dir='/absolute/path/to/vncorenlp')
+    return model
+
+model = load_model(vncorenlpPath='', outputPath='./lesson-05/model')
+
+
+'''
+    # Annotate a raw corpus
+    # model.annotate_file(input_file="/absolute/path/to/input/file", output_file="/absolute/path/to/output/file")
+
+    # Annotate a raw text
+    model.print_out(
+        model.annotate_text("Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây.")
+    )
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def load_dataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     '''

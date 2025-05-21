@@ -1,3 +1,5 @@
 venv/
 .venv/
 venv310/
+
+example.py
