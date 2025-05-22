@@ -49,7 +49,7 @@ def load_dataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     
     # train dataset 
     try:  
-        df_train = pd.read_json('C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/data/UIT-VSFC-train.json', lines=False)
+        df_train = pd.read_json('C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/data/originalDataset/UIT-VSFC-train.json', lines=False)
         print(df_train.head())
     except Exception as e:
         logger.error(f'Error loading train dataset: {e}')
@@ -57,7 +57,7 @@ def load_dataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     
     # dev dataset 
     try:
-        df_dev = pd.read_json('C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/data/UIT-VSFC-dev.json', lines=False)
+        df_dev = pd.read_json('C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/data/originalDataset/UIT-VSFC-dev.json', lines=False)
         print(df_dev.head())
     except Exception as e:
         logger.error(f'Error loading dev dataset: {e}')
@@ -65,7 +65,7 @@ def load_dataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     
     # test dataset 
     try:
-        df_test = pd.read_json('C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/data/UIT-VSFC-test.json', lines=False)
+        df_test = pd.read_json('C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/data/originalDataset/UIT-VSFC-test.json', lines=False)
         print(df_test.head())
     except Exception as e:
         logger.error(f'Error loading test dataset: {e}')
@@ -124,6 +124,29 @@ def tokenize_stringInDatasets(datasets: tuple[pd.DataFrame, pd.DataFrame, pd.Dat
 
     return df_train, df_dev, df_test
 
+def save_dataset(df_train_tokenized, df_dev_tokenized, df_test_tokenized):
+    try:
+        logger.info('Start saving word-segmented datasets ...')
+
+        # Đường dẫn gốc tính từ file word_segmentation.py
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # lesson-05
+        output_dir = os.path.join(base_dir, 'data', 'wordSegmentedDataset')
+
+        # Tạo thư mục nếu chưa tồn tại
+        os.makedirs(output_dir, exist_ok=True)
+
+        # Lưu các file JSON
+        df_train_tokenized.to_json(os.path.join(output_dir, 'train.json'), force_ascii=False)
+        df_dev_tokenized.to_json(os.path.join(output_dir, 'dev.json'), force_ascii=False)
+        df_test_tokenized.to_json(os.path.join(output_dir, 'test.json'), force_ascii=False)
+
+        logger.info('Datasets saved successfully.')
+
+    except FileNotFoundError:
+        logger.error('File not found error!')
+    except Exception as e:
+        logger.error(f'Error saving datasets: {e}')
+        return None
 # Main execution ======================================================================================================
 def main():  
     logger.info("Starting main pipeline...")
@@ -142,8 +165,6 @@ def main():
         logger.error('The pipeline has been interrupted: Dataset loading failed!')
         return
 
-    train_df, dev_df, test_df = datasets
-
     # Now, tokenize the entire datasets
     tokenized_datasets = tokenize_stringInDatasets(datasets, model)
     if tokenized_datasets is None:
@@ -158,6 +179,8 @@ def main():
     print(f"\n{df_dev_tokenized.head()}")
     print("Tokenized test data head:")
     print(f"\n{df_test_tokenized.head()}")
+
+    save_dataset(df_dev_tokenized=df_dev_tokenized, df_test_tokenized=df_test_tokenized, df_train_tokenized=df_train_tokenized)
 
     logger.success("Pipeline executed successfully!")
 
