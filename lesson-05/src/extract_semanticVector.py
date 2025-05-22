@@ -15,8 +15,12 @@ import os
 # Set logger
 logger = get_logger()
 
+# Define BASE_DIR at the top level
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # lesson-05
+
+
 # Load dataset and PhoBERT model
-def load_segmentedDataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
+def load_segmentedDatasets() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     '''
     This function loads segmented datasets from JSON files.
 
@@ -33,8 +37,7 @@ def load_segmentedDataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] |
 
     logger.info('Start loading segmented datasets ...')
     try:
-        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # lesson-05
-        dataset_dir = os.path.join(base_dir, 'data', 'wordSegmentedDataset')
+        dataset_dir = os.path.join(BASE_DIR, 'data', 'wordSegmentedDatasets')
 
         df_train = pd.read_json(os.path.join(dataset_dir, 'train.json'))
         print(df_train.head())
@@ -64,8 +67,8 @@ def load_phoBertModel(typeOfModel: str = 'vinai/phobert-base-v2') -> tuple[AutoM
     '''
     logger.info(f'Start loading PhoBert model and ({typeOfModel})')
     try:
-         phobert = AutoModel.from_pretrained(typeOfModel)
-         tokenizer = AutoTokenizer.from_pretrained(typeOfModel)
+        phobert = AutoModel.from_pretrained(typeOfModel)
+        tokenizer = AutoTokenizer.from_pretrained(typeOfModel)
     except Exception as e:
         logger.error(f'Error loading PhoBERT model: {e}')
         return None
@@ -95,7 +98,8 @@ def compute_semanticVectorForDataset(datasets: tuple[pd.DataFrame, pd.DataFrame,
     model = model.to(device)
     
     try:
-        for i, dataset in enumerate(datasets, start=1):  # i starts from 1
+        processed_datasets = []
+        for i, dataset in enumerate(datasets, start=1):
             logger.info(f'{i-1}/3 datasets have been processed successfully!')
             
             dataset['semantic_vector'] = None
@@ -104,22 +108,26 @@ def compute_semanticVectorForDataset(datasets: tuple[pd.DataFrame, pd.DataFrame,
                 sentence = row['tokenized_sentence']
                 embedding = extract_semanticVector(sentence, model, tokenizer)
                 dataset.at[idx, 'semantic_vector'] = embedding.cpu().tolist()
+            
+            # Drop the 'tokenized_sentence' column after processing
+            dataset = dataset.drop(columns=['tokenized_sentence'])
+            processed_datasets.append(dataset)
                 
     except Exception as e:
         logger.error(f'Error computing semantic vectors for datasets: {e}')
         return None
     
-    return datasets
+    return tuple(processed_datasets)
 
 def save_processed_datasets(datasets: tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame], output_dir: str):
     os.makedirs(output_dir, exist_ok=True)
-    datasets[0].to_json(os.path.join(output_dir, 'train_semantic.json'), orient='records', force_ascii=False)
-    datasets[1].to_json(os.path.join(output_dir, 'dev_semantic.json'), orient='records', force_ascii=False)
-    datasets[2].to_json(os.path.join(output_dir, 'test_semantic.json'), orient='records', force_ascii=False)
+    datasets[0].to_json(os.path.join(output_dir, 'train_semantic.json'), orient='records', force_ascii=False, indent=4)
+    datasets[1].to_json(os.path.join(output_dir, 'dev_semantic.json'), orient='records', force_ascii=False, indent=4)
+    datasets[2].to_json(os.path.join(output_dir, 'test_semantic.json'), orient='records', force_ascii=False, indent=4)
 
 
 def main():
-    datasets = load_segmentedDataset()
+    datasets = load_segmentedDatasets()
     if datasets is None:
         return
 
@@ -130,9 +138,8 @@ def main():
     result = compute_semanticVectorForDataset(datasets=datasets, model=phobert, tokenizer=phobertTokenizer)
 
     if result:
-        save_processed_datasets(result, output_dir='lesson-05/data/semanticVectors')
+        save_processed_datasets(result, output_dir=os.path.join(BASE_DIR, 'data', 'semanticVectors'))
         logger.success('Semantic vector computation and saving completed successfully!')
-
 
 
 if __name__ == "__main__":
