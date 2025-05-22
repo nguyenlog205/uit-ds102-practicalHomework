@@ -4,8 +4,8 @@ import pandas as pd
 import json
 import os
 
-
-
+# Define BASE_DIR at the top for reusability
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 # Setup logger 
 logger = get_logger('./lesson-05/log/compile.log')
@@ -37,8 +37,6 @@ def load_model(modelPath: str) -> py_vncorenlp.VnCoreNLP | None:
     
     return model
 
-
-
 # Load dataset ===================================================================================================================
 def load_dataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     '''
@@ -46,10 +44,12 @@ def load_dataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     '''
 
     logger.info('Start loading datasets ...')
+    # Use BASE_DIR for dataset_dir
+    dataset_dir = os.path.join(BASE_DIR, 'data', 'originalDatasets')
     
     # train dataset 
     try:  
-        df_train = pd.read_json('C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/data/originalDataset/UIT-VSFC-train.json', lines=False)
+        df_train = pd.read_json(os.path.join(dataset_dir, 'UIT_VSFC_train.json'))
         print(df_train.head())
     except Exception as e:
         logger.error(f'Error loading train dataset: {e}')
@@ -57,7 +57,7 @@ def load_dataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     
     # dev dataset 
     try:
-        df_dev = pd.read_json('C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/data/originalDataset/UIT-VSFC-dev.json', lines=False)
+        df_dev = pd.read_json(os.path.join(dataset_dir, 'UIT_VSFC_dev.json'))
         print(df_dev.head())
     except Exception as e:
         logger.error(f'Error loading dev dataset: {e}')
@@ -65,7 +65,7 @@ def load_dataset() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     
     # test dataset 
     try:
-        df_test = pd.read_json('C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/data/originalDataset/UIT-VSFC-test.json', lines=False)
+        df_test = pd.read_json(os.path.join(dataset_dir, 'UIT_VSFC_test.json'))
         print(df_test.head())
     except Exception as e:
         logger.error(f'Error loading test dataset: {e}')
@@ -93,52 +93,54 @@ def tokenize_string(string: str, model: py_vncorenlp.VnCoreNLP) -> list[str] | N
 
 def tokenize_stringInDatasets(datasets: tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame], model: py_vncorenlp.VnCoreNLP) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     '''
-    This function tokenizes the 'sentence' column in the provided datasets.
+    This function tokenizes the 'sentence' column in the provided datasets,
+    creates a new 'tokenized_sentence' column, and then drops the original
+    'sentence' column.
     Respectively returns tokenized train, dev, test datasets.
     '''
     df_train, df_dev, df_test = datasets
+    dataframes = {'train': df_train, 'dev': df_dev, 'test': df_test}
+    processed_dataframes = {}
 
     logger.info("Starting tokenization of datasets...")
     try:
-        # Apply the tokenize_string function to the 'sentence' column
-        # Handle cases where 'sentence' might be missing or empty for a row
-        if 'sentence' not in df_train.columns:
-            logger.error("Train DataFrame must contain a 'sentence' column for tokenization.")
-            return None
-        df_train['tokenized_sentence'] = df_train['sentence'].apply(lambda x: tokenize_string(x, model))
+        for name, df in dataframes.items():
+            # Check if 'sentence' column exists in the current DataFrame
+            if 'sentence' not in df.columns:
+                logger.error(f"{name.capitalize()} DataFrame must contain a 'sentence' column for tokenization.")
+                return None
 
-        if 'sentence' not in df_dev.columns:
-            logger.error("Dev DataFrame must contain a 'sentence' column for tokenization.")
-            return None
-        df_dev['tokenized_sentence'] = df_dev['sentence'].apply(lambda x: tokenize_string(x, model))
+            # Apply the tokenize_string function to the 'sentence' column
+            # and handle potential NaN or non-string values gracefully
+            df['tokenized_sentence'] = df['sentence'].apply(
+                lambda x: tokenize_string(x, model) # tokenize_string now handles non-string/NaN
+            )
 
-        if 'sentence' not in df_test.columns:
-            logger.error("Test DataFrame must contain a 'sentence' column for tokenization.")
-            return None
-        df_test['tokenized_sentence'] = df_test['sentence'].apply(lambda x: tokenize_string(x, model))
+            # Drop the original 'sentence' column after tokenization
+            df = df.drop(columns=['sentence'])
+            processed_dataframes[name] = df
 
         logger.success("Dataset tokenization completed successfully!")
     except Exception as e:
         logger.error(f"An unexpected error occurred during dataset tokenization: {e}")
         return None
 
-    return df_train, df_dev, df_test
+    return processed_dataframes['train'], processed_dataframes['dev'], processed_dataframes['test']
 
 def save_dataset(df_train_tokenized, df_dev_tokenized, df_test_tokenized):
     try:
         logger.info('Start saving word-segmented datasets ...')
 
-        # Đường dẫn gốc tính từ file word_segmentation.py
-        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # lesson-05
-        output_dir = os.path.join(base_dir, 'data', 'wordSegmentedDataset')
+        # Use BASE_DIR for the output path
+        output_dir = os.path.join(BASE_DIR, 'data', 'wordSegmentedDatasets')
 
-        # Tạo thư mục nếu chưa tồn tại
+        # Create the directory if it doesn't exist
         os.makedirs(output_dir, exist_ok=True)
 
-        # Lưu các file JSON
-        df_train_tokenized.to_json(os.path.join(output_dir, 'train.json'), force_ascii=False)
-        df_dev_tokenized.to_json(os.path.join(output_dir, 'dev.json'), force_ascii=False)
-        df_test_tokenized.to_json(os.path.join(output_dir, 'test.json'), force_ascii=False)
+        # Save JSON files with pretty formatting (indent=4) and orient='records'
+        df_train_tokenized.to_json(os.path.join(output_dir, 'train.json'), force_ascii=False, indent=4, orient='records')
+        df_dev_tokenized.to_json(os.path.join(output_dir, 'dev.json'), force_ascii=False, indent=4, orient='records')
+        df_test_tokenized.to_json(os.path.join(output_dir, 'test.json'), force_ascii=False, indent=4, orient='records')
 
         logger.info('Datasets saved successfully.')
 
@@ -154,7 +156,8 @@ def main():
     logger.info("Starting main pipeline...")
 
     # Load model
-    modelPath = 'C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/model'
+    # Use BASE_DIR for modelPath
+    modelPath = os.path.join(BASE_DIR, 'model')
     os.makedirs(modelPath, exist_ok=True) # Ensure model directory exists for download - using os.makedirs as pathlib is excluded
     model = load_model(modelPath=modelPath)
     if model is None:
@@ -188,5 +191,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# python lesson-05/src/word_segmentation.py
