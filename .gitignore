@@ -4,9 +4,5 @@ venv310/
 
 example.py
 
-
-
-
-# lesson-05
-lesson-05/data/semanticVectors
-lesson-05/data/wordSegmentedDatasets
+lesson-05/data/semanticVectors/
+lesson-05/data/wordSegmentedDatasets/
