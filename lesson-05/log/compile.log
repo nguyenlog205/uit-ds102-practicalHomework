@@ -155,3 +155,6 @@
 [36m[2025-05-22 17:04:22] [INFO] Start loading segmented datasets ...[39m
 [32m[2025-05-22 17:04:22] [SUCCESS] Loading datasets have been completed successfully![39m
 [36m[2025-05-22 17:04:22] [INFO] Start loading PhoBert model and (vinai/phobert-base-v2)[39m
+[36m[2025-05-22 20:32:30] [INFO] Start loading segmented datasets ...[39m
+[32m[2025-05-22 20:32:30] [SUCCESS] Loading datasets have been completed successfully![39m
+[36m[2025-05-22 20:32:30] [INFO] Start loading PhoBert model and (vinai/phobert-base-v2)[39m

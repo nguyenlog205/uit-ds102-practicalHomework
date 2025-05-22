@@ -1,3 +1,7 @@
+'''
+This module is to extract sematic vectors of the 
+students' responses (after being segmented).
+'''
 from utils.logger import get_logger
 from word_segmentation import load_model, tokenize_stringInDatasets
 
