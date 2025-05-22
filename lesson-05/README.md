@@ -69,9 +69,9 @@ Follow these instructions to set up the project on your local machine.
     pip install -r requirements.txt
     ```
 
-## Usage
+## Lecture description
 
-This project provides scripts for specific NLP tasks (it **MUST** be compliled respectively).
-* To perform word segmentation, run `word_segmentation.py`.
-* To extract semantic vectors, run `extract_semanticVector.py`.
+This project is the assignments to my lecturer at my practical lesson. It includes scripts for specific assigned tasks (it **MUST** be compliled respectively).
+* **Task 01**: To perform word segmentation, run `word_segmentation.py`. It then automatically generate `wordSegmentedDatasets` folder, encompassing neccessary datasets for task 02.
+* **Task 02**: To extract semantic vectors, run `extract_semanticVector.py`. It then automatically generate `semanticVectors` folder, encompassing neccessary datasets for task 03.
 
