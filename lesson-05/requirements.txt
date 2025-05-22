@@ -1,0 +1,8 @@
+# Task 01 requirements
+py_vncorenlp
+numpy
+pandas
+
+# Task 02 requirements
+torch
+transformers
