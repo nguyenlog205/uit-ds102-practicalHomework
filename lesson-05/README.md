@@ -1,6 +1,6 @@
-# Lesson 05: Semantic Vector Extraction and Word Segmentation
+# Lesson 05: Word Segmentation, Semantic Vector Extraction and Gaussian Mixture Model
 
-This repository contains the materials and code for "Lesson 05", focusing on natural language processing tasks, specifically semantic vector extraction and word segmentation. It includes scripts for data processing, model utilities, and a Jupyter notebook for experimentation and analysis.
+> This repository contains the code and materials for Lesson 05, focusing on the application of the Gaussian Mixture Model (GMM) for classification tasks in Vietnamese NLP. The project includes preprocessing steps such as word segmentation using py_vncorenlp and semantic vector extraction using the PhoBERT model. These vectors serve as input features for GMM-based prediction, with supporting scripts and a Jupyter notebook for implementation and analysis.
 
 ## Table of Contents
 
@@ -8,7 +8,7 @@ This repository contains the materials and code for "Lesson 05", focusing on nat
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
+- [Assignment description](#assignment-description)
 
 ## Project Structure
 
@@ -69,7 +69,7 @@ Follow these instructions to set up the project on your local machine.
     pip install -r requirements.txt
     ```
 
-## Lecture description
+## Assignment description
 
 This project is the assignments to my lecturer at my practical lesson. It includes scripts for specific assigned tasks (it **MUST** be compliled respectively).
 * **Task 01**: To perform word segmentation, run `word_segmentation.py`. It then automatically generate `wordSegmentedDatasets` folder, encompassing neccessary datasets for task 02.
