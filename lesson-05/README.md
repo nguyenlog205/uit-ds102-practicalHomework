@@ -1,6 +1,6 @@
 # Lesson 05: Word Segmentation, Semantic Vector Extraction and Gaussian Mixture Model
 
-> This repository contains the code and materials for Lesson 05, focusing on the application of the Gaussian Mixture Model (GMM) for classification tasks in Vietnamese NLP. The project includes preprocessing steps such as word segmentation using py_vncorenlp and semantic vector extraction using the PhoBERT model. These vectors serve as input features for GMM-based prediction, with supporting scripts and a Jupyter notebook for implementation and analysis.
+> This repository contains the assignment for lesson 05 (practical lesson - *DS102 - Statistical Machine Learning*), focusing on the application of the **Gaussian Mixture Model (GMM)** for classification tasks in Vietnamese NLP. The project includes preprocessing steps such as *word segmentation* using `py_vncorenlp` and semantic vector extraction using the `PhoBERT` model. These vectors serve as input features for GMM-based prediction, with supporting scripts and a Jupyter notebook for implementation and analysis.
 
 ## Table of Contents
 
