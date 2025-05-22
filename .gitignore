@@ -6,3 +6,4 @@ example.py
 
 lesson-05/data/semanticVectors/
 lesson-05/data/wordSegmentedDatasets/
+lesson-05/src/__pycache__/

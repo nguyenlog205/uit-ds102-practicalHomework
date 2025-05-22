@@ -18,12 +18,10 @@ The project is organized as follows:
 ├── log/                     # Directory for log files generated during script execution.
 ├── model/                   # Directory to store trained models or model-related artifacts.
 ├── src/                     # Source code directory
-│   ├── pycache/             # Python compiled bytecode cache.
 │   ├── utils/               # Utility functions and helper scripts.
 │   ├── __init__.py
 │   ├── extract_semanticVector.py    # Script for extracting semantic vectors from text.
-│   └── word_segmentation.py         # Script for performing word segmentation.
-│
+│   └── segment_word.py         # Script for performing word segmentation.
 ├── lab-5.pdf                # Lab instructions for lesson 05.
 ├── notebook.ipynb           # Jupyter notebook for demonstrating code (lab report).
 ├── requirements.txt         # Python dependencies required for the project.
