@@ -42,3 +42,61 @@
 [36m[2025-05-22 09:57:35] [INFO] Start loading datasets ...[39m
 [31m[2025-05-22 09:57:35] [ERROR] Error loading train dataset: File lesson-05/data/UIT-VSFC-train.json does not exist[39m
 [31m[2025-05-22 09:57:35] [ERROR] The pipeline has been interrupted just now![39m
+[36m[2025-05-22 10:04:16] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 10:04:27] [INFO] Start loading datasets ...[39m
+[31m[2025-05-22 10:04:27] [ERROR] Error loading train dataset: File lesson-05/data/UIT-VSFC-train.json does not exist[39m
+[31m[2025-05-22 10:04:27] [ERROR] The pipeline has been interrupted just now![39m
+[36m[2025-05-22 10:05:43] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 10:05:54] [INFO] Start loading datasets ...[39m
+[32m[2025-05-22 10:05:54] [SUCCESS] Loading datasets has been completed successfully![39m
+[36m[2025-05-22 10:06:41] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 10:06:52] [INFO] Start loading datasets ...[39m
+[32m[2025-05-22 10:06:52] [SUCCESS] Loading datasets has been completed successfully![39m
+[36m[2025-05-22 10:10:54] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 10:11:05] [INFO] Start loading datasets ...[39m
+[32m[2025-05-22 10:11:05] [SUCCESS] Loading datasets has been completed successfully![39m
+[36m[2025-05-22 10:11:42] [INFO] Start downloading py_vncorenlp model ...[39m
+[33m[2025-05-22 10:11:42] [WARNING] Error downloading py_vncorenlp model: download_model() got an unexpected keyword argument 'annotators'[39m
+[36m[2025-05-22 10:11:53] [INFO] Start loading datasets ...[39m
+[32m[2025-05-22 10:11:53] [SUCCESS] Loading datasets has been completed successfully![39m
+[36m[2025-05-22 10:17:01] [INFO] Starting main pipeline...[39m
+[36m[2025-05-22 10:17:01] [INFO] Start downloading py_vncorenlp model ...[39m
+[33m[2025-05-22 10:17:01] [WARNING] Error downloading py_vncorenlp model: download_model() got an unexpected keyword argument 'annotators'[39m
+[36m[2025-05-22 10:17:16] [INFO] Start loading datasets ...[39m
+[32m[2025-05-22 10:17:16] [SUCCESS] Loading datasets has been completed successfully![39m
+[36m[2025-05-22 10:17:17] [INFO] Example tokenization: ['hello mấy bà nội Việt_Nam'][39m
+[36m[2025-05-22 10:17:17] [INFO] Starting tokenization of datasets...[39m
+[32m[2025-05-22 10:17:55] [SUCCESS] Dataset tokenization completed successfully![39m
+[36m[2025-05-22 10:17:55] [INFO] Tokenized training data head:[39m
+[36m[2025-05-22 10:17:55] [INFO] 
+                                            sentence sentiment             topic                                 tokenized_sentence
+0                          slide giáo trình đầy đủ .  positive  training_program                          slide giáo_trình đầy_đủ .
+1     nhiệt tình giảng dạy , gần gũi với sinh viên .  positive          lecturer     nhiệt_tình giảng_dạy , gần_gũi với sinh_viên .
+2               đi học đầy đủ full điểm chuyên cần .  negative  training_program               đi học đầy_đủ full điểm chuyên_cần .
+3  chưa áp dụng công nghệ thông tin và các thiết ...  negative          lecturer  chưa áp_dụng công_nghệ_thông_tin và các thiết_...
+4  thầy giảng bài hay , có nhiều bài tập ví dụ ng...  positive          lecturer  thầy giảng bài hay , có nhiều bài_tập ví_dụ ng...[39m
+[36m[2025-05-22 10:17:55] [INFO] Tokenized development data head:[39m
+[36m[2025-05-22 10:17:55] [INFO] 
+                                            sentence sentiment             topic                                 tokenized_sentence
+0                           giáo trình chưa cụ thể .  negative  training_program                           giáo_trình chưa cụ_thể .
+1                                   giảng buồn ngủ .  negative          lecturer                                   giảng buồn_ngủ .
+2                     giáo viên vui tính , tận tâm .  positive          lecturer                     giáo_viên vui_tính , tận_tâm .
+3  giảng viên nên giao bài tập nhiều hơn , chia n...  negative          lecturer  giảng_viên nên giao bài_tập nhiều hơn , chia n...
+4  giảng viên cần giảng bài chi tiết hơn , đi sâu...  negative          lecturer  giảng_viên cần giảng bài chi_tiết hơn , đi_sâu...[39m
+[36m[2025-05-22 10:17:55] [INFO] Tokenized test data head:[39m
+[36m[2025-05-22 10:17:55] [INFO] 
+                                            sentence sentiment     topic                                 tokenized_sentence
+0                           nói tiếng anh lưu loát .  positive  lecturer                           nói tiếng anh lưu_loát .
+1                           giáo viên rất vui tính .  positive  lecturer                           giáo_viên rất vui_tính .
+2                                    cô max có tâm .  positive  lecturer                                    cô max có tâm .
+3                       giảng bài thu hút , dí dỏm .  positive  lecturer                       giảng bài thu_hút , dí_dỏm .
+4  giáo viên không giảng dạy kiến thức , hướng dẫ...  negative  lecturer  giáo_viên không giảng_dạy kiến_thức , hướng_dẫ...[39m
+[32m[2025-05-22 10:17:55] [SUCCESS] Pipeline executed successfully![39m
+[36m[2025-05-22 10:26:59] [INFO] Starting main pipeline...[39m
+[36m[2025-05-22 10:26:59] [INFO] Start downloading py_vncorenlp model ...[39m
+[33m[2025-05-22 10:26:59] [WARNING] Error downloading py_vncorenlp model: download_model() got an unexpected keyword argument 'annotators'[39m
+[36m[2025-05-22 10:27:10] [INFO] Start loading datasets ...[39m
+[32m[2025-05-22 10:27:10] [SUCCESS] Loading datasets has been completed successfully![39m
+[36m[2025-05-22 10:27:10] [INFO] Starting tokenization of datasets...[39m
+[32m[2025-05-22 10:27:26] [SUCCESS] Dataset tokenization completed successfully![39m
+[32m[2025-05-22 10:27:26] [SUCCESS] Pipeline executed successfully![39m
