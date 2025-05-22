@@ -1,16 +1,44 @@
-[36m[2025-05-20 15:08:26] [INFO] Initiated logger successfully![39m
-[36m[2025-05-20 15:19:36] [INFO] Welcome![39m
-[2025-05-20 15:19:52] [INFO] Welcome!
-[36m[2025-05-20 15:24:12] [INFO] Start loading dataset ...[39m
-[36m[2025-05-20 15:24:45] [INFO] Start loading dataset ...[39m
-[36m[2025-05-20 15:26:02] [INFO] Start loading dataset ...[39m
-[36m[2025-05-20 15:26:12] [INFO] Start loading dataset ...[39m
-[31m[2025-05-20 15:26:12] [ERROR] JSON decoding error: Expecting value: line 1 column 2 (char 1)[39m
-[36m[2025-05-20 15:27:38] [INFO] Start loading dataset ...[39m
-[32m[2025-05-20 15:27:38] [SUCCESS] Loading dataset has been completed successfully![39m
-[36m[2025-05-20 15:34:49] [INFO] Start loading dataset ...[39m
-[32m[2025-05-20 15:34:49] [SUCCESS] Loading dataset has been completed successfully![39m
-[36m[2025-05-20 15:35:58] [INFO] Start loading dataset ...[39m
-[32m[2025-05-20 15:35:58] [SUCCESS] Loading dataset has been completed successfully![39m
-[36m[2025-05-21 22:09:32] [INFO] Start loading datasets ...[39m
-[32m[2025-05-21 22:09:32] [SUCCESS] Loading datasets has been completed successfully![39m
+[36m[2025-05-22 08:55:52] [INFO] Start downloading py_vncorenlp model ...[39m
+[33m[2025-05-22 08:55:52] [WARNING] Error downloading py_vncorenlp model: [WinError 183] Cannot create a file when that file already exists: './lesson-05/models'[39m
+[31m[2025-05-22 08:55:52] [ERROR] Error loading py_vncorenlp model: Please download the VnCoreNLP model![39m
+[36m[2025-05-22 09:03:53] [INFO] Start downloading py_vncorenlp model ...[39m
+[33m[2025-05-22 09:03:53] [WARNING] Error downloading py_vncorenlp model: [WinError 183] Cannot create a file when that file already exists: './lesson-05/models'[39m
+[31m[2025-05-22 09:03:53] [ERROR] Error loading py_vncorenlp model: Please download the VnCoreNLP model![39m
+[36m[2025-05-22 09:04:52] [INFO] Start downloading py_vncorenlp model ...[39m
+[33m[2025-05-22 09:04:52] [WARNING] Error downloading py_vncorenlp model: [WinError 183] Cannot create a file when that file already exists: './lesson-05/models'[39m
+[31m[2025-05-22 09:04:52] [ERROR] Error loading py_vncorenlp model: Please download the VnCoreNLP model![39m
+[36m[2025-05-22 09:09:42] [INFO] Start downloading py_vncorenlp model ...[39m
+[33m[2025-05-22 09:09:42] [WARNING] Error downloading py_vncorenlp model: [WinError 183] Cannot create a file when that file already exists: './lesson-05/models'[39m
+[31m[2025-05-22 09:09:42] [ERROR] Error loading py_vncorenlp model: Please download the VnCoreNLP model![39m
+[36m[2025-05-22 09:10:14] [INFO] Start downloading py_vncorenlp model ...[39m
+[33m[2025-05-22 09:10:14] [WARNING] Error downloading py_vncorenlp model: [WinError 183] Cannot create a file when that file already exists: './lesson-05/models'[39m
+[31m[2025-05-22 09:10:14] [ERROR] Error loading py_vncorenlp model: Please download the VnCoreNLP model![39m
+[36m[2025-05-22 09:18:00] [INFO] Start downloading py_vncorenlp model ...[39m
+[33m[2025-05-22 09:18:00] [WARNING] Error downloading py_vncorenlp model: [WinError 183] Cannot create a file when that file already exists: 'C:/Users/VICTUS/Documents/developer/uit-practicalLesson-sML/lesson-05/models'[39m
+[31m[2025-05-22 09:18:00] [ERROR] Error loading py_vncorenlp model: Please download the VnCoreNLP model![39m
+[36m[2025-05-22 09:32:29] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 09:33:58] [INFO] Start loading datasets ...[39m
+[31m[2025-05-22 09:33:58] [ERROR] Error loading train dataset: File ./lesson-05/data/UIT-VSFC-train.json does not exist[39m
+[31m[2025-05-22 09:33:58] [ERROR] The pipeline has been interrupted just now![39m
+[36m[2025-05-22 09:35:48] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 09:35:59] [INFO] Start loading datasets ...[39m
+[31m[2025-05-22 09:35:59] [ERROR] Error loading train dataset: File /lesson-05/data/UIT-VSFC-train.json does not exist[39m
+[31m[2025-05-22 09:35:59] [ERROR] The pipeline has been interrupted just now![39m
+[36m[2025-05-22 09:43:58] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 09:44:10] [INFO] Start loading datasets ...[39m
+[31m[2025-05-22 09:44:10] [ERROR] Error loading train dataset: File lesson-05/data/UIT-VSFC-train.json does not exist[39m
+[31m[2025-05-22 09:44:10] [ERROR] The pipeline has been interrupted just now![39m
+[36m[2025-05-22 09:46:43] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 09:46:54] [INFO] Start loading datasets ...[39m
+[31m[2025-05-22 09:46:54] [ERROR] Error loading train dataset: File lesson-05/data/UIT-VSFC-train.json does not exist[39m
+[31m[2025-05-22 09:46:54] [ERROR] Error loading dev dataset: File lesson-05/data/UIT-VSFC-dev.json does not exist[39m
+[31m[2025-05-22 09:46:54] [ERROR] Error loading test dataset: File lesson-05/data/UIT-VSFC-test.json does not exist[39m
+[32m[2025-05-22 09:46:54] [SUCCESS] Loading datasets has been completed successfully![39m
+[36m[2025-05-22 09:56:10] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 09:56:21] [INFO] Start loading datasets ...[39m
+[31m[2025-05-22 09:56:21] [ERROR] Error loading train dataset: File lesson-05/data/UIT-VSFC-train.json does not exist[39m
+[31m[2025-05-22 09:56:21] [ERROR] The pipeline has been interrupted just now![39m
+[36m[2025-05-22 09:57:24] [INFO] Start downloading py_vncorenlp model ...[39m
+[36m[2025-05-22 09:57:35] [INFO] Start loading datasets ...[39m
+[31m[2025-05-22 09:57:35] [ERROR] Error loading train dataset: File lesson-05/data/UIT-VSFC-train.json does not exist[39m
+[31m[2025-05-22 09:57:35] [ERROR] The pipeline has been interrupted just now![39m
