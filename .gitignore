@@ -2,6 +2,8 @@ venv/
 .venv/
 venv310/
 
+
+
 example.py
 
 lesson-05/data/semanticVectors/
